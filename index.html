@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Клуб четырех коней</title>
+    <link rel="stylesheet" href="./fonts/fonts.css" />
+    <link rel="stylesheet" href="./styles/global.css" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/animations.css" />
+  </head>
+
+  <body class="golos-text-medium">
+    <!-- Основное содержание страницы -->
+    <main>
+      <!-- Обертка для хедера и первого экрана -->
+      <div class="hero-wrapper">
+        <div class="hero__city-image"></div>
+        <div class="hero__overlay overlay"></div>
+        <!-- Хедер -->
+        <header class="header">
+          <div class="header__container container">
+            <div class="header__logo">
+              <img src="./images/logo.svg" alt="Клуб Четырех Коней" />
+            </div>
+          </div>
+        </header>
+
+        <!-- Первый экран -->
+        <section class="hero">
+          <div class="hero__container container">
+            <div class="hero__background">
+              <div class="hero__ellipse"></div>
+              <img
+                src="./images/text-circle.svg"
+                alt="Текст по кругу"
+                class="hero__text-circle"
+              />
+              <img
+                src="./images/chess-piece1.png"
+                alt="Шахматная фигура"
+                class="hero__chess-piece1"
+              />
+              <img
+                src="./images/chess-piece2.png"
+                alt="Шахматная фигура"
+                class="hero__chess-piece2"
+              />
+              <img
+                src="./images/chess-piece3.png"
+                alt="Шахматная фигура"
+                class="hero__chess-piece3"
+              />
+              <img
+                src="./images/chess-piece4.png"
+                alt="Шахматная фигура"
+                class="hero__chess-piece4"
+              />
+            </div>
+            <div class="hero__content">
+              <h1 class="hero__title merriweather-regular">
+                <span class="hero__title-left">ПРЕВРАТИТЕ УЕЗДНЫЙ ГОРОД</span>
+                <span class="hero__title-center">В СТОЛИЦУ</span>
+                <span class="hero__title-right">ЗЕМНОГО ШАРА</span>
+              </h1>
+              <p class="hero__subtitle golos-text-regular">
+                Оплатите взнос на телеграммы для&nbsp;организации Международного
+                васюкинского турнира по шахматам
+              </p>
+              <div class="hero__buttons">
+                <a href="#support" class="hero__button button--black"
+                  >Поддержать шахматную мысль</a
+                >
+                <a href="#participants" class="hero__button button--white"
+                  >Подробнее о&nbsp;турнире</a
+                >
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Тикер -->
+      <div class="ticker">
+        <div class="ticker__wrapper merriweather-regular">
+          <div class="ticker__item">
+            Дело помощи утопающим — дело рук самих утопающих!
+          </div>
+          <div class="ticker__item">&#8226;</div>
+          <div class="ticker__item">
+            Шахматы двигают вперед не только культуру, но и экономику!
+          </div>
+          <div class="ticker__item">&#8226;</div>
+          <div class="ticker__item">
+            Лед тронулся, господа присяжные заседатели!
+          </div>
+          <div class="ticker__item">&#8226;</div>
+        </div>
+      </div>
+
+      <!-- Второй экран (поддержка турнира и лекция) -->
+      <section class="support">
+        <div id="support" class="support__container container">
+          <div class="support__text">
+            <div class="support__titles">
+              <h2 class="support__title merriweather-regular">
+                Чтобы поддержать<br />Международный васюкинский турнир
+              </h2>
+              <img
+                src="./images/support-ellipse.png"
+                alt="Шахматный турнир"
+                class="support__ellipse"
+              />
+              <h2 class="support__title merriweather-regular">
+                посетите лекцию на тему:
+                <span class="highlight-red merriweather-bold"
+                  >«Плодотворная дебютная идея»</span
+                >
+              </h2>
+            </div>
+          </div>
+
+          <div class="support__table">
+            <div class="support__overlay overlay"></div>
+            <div class="support__images">
+              <img
+                src="./images/paper.png"
+                alt="Фон для картинки"
+                class="support__image support__image--paper"
+              />
+              <img
+                src="./images/money.png"
+                alt="Купюра"
+                class="support__image support__image--money"
+              />
+              <img
+                src="./images/person.png"
+                alt="Шахматист"
+                class="support__image support__image--person"
+              />
+              <img
+                src="./images/chess-knight.png"
+                alt="Шахматная фигура"
+                class="support__image support__image--knight"
+              />
+              <img
+                src="./images/hand.png"
+                alt="Рука"
+                class="support__image support__image--hand"
+              />
+            </div>
+
+            <div class="support__table-content">
+              <h2 class="support__title merriweather-regular">
+                и Сеанс
+                <span class="highlight-red merriweather-bold"
+                  >одновременной игры в&nbsp;шахматы на&nbsp;160&nbsp;досках
+                </span>
+                гроссмейстера О.&nbsp;Бендера
+              </h2>
+              <div class="table-container">
+                <table class="table">
+                  <tbody>
+                    <tr class="table__row">
+                      <td class="table__cell golos-text-regular">
+                        Место проведения:
+                      </td>
+                      <td class="table__cell golos-text-semibold">
+                        Клуб «Картонажник»
+                      </td>
+                    </tr>
+                    <tr class="table__row">
+                      <td class="table__cell golos-text-regular">
+                        Дата и время мероприятия:
+                      </td>
+                      <td class="table__cell golos-text-semibold">
+                        22 июня 1927 г. в 18:00
+                      </td>
+                    </tr>
+                    <tr class="table__row">
+                      <td class="table__cell golos-text-regular">
+                        Стоимость входных билетов:
+                      </td>
+                      <td class="table__cell golos-text-semibold">20 коп.</td>
+                    </tr>
+                    <tr class="table__row">
+                      <td class="table__cell golos-text-regular">
+                        Плата за игру:
+                      </td>
+                      <td class="table__cell golos-text-semibold">50 коп.</td>
+                    </tr>
+                    <tr class="table__row">
+                      <td class="table__cell golos-text-regular">
+                        Взнос на телеграммы:
+                      </td>
+                      <td class="table__cell golos-text-semibold">
+                        <span class="table__old-price">100 руб.</span> 21 руб.
+                        16 коп.
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="support__note golos-text-regular">
+                По всем вопросам обращаться в&nbsp;администрацию
+                к&nbsp;К.&nbsp;Михельсону
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 экран (Этапы преображения Васюков) -->
+      <section class="steps">
+        <div class="steps__container container">
+          <div class="steps__header">
+            <h2 class="steps__title merriweather-regular">
+              Этапы преображения<br />Васюков
+            </h2>
+            <span class="steps__subtitle golos-text-regular"
+              >Будущие источники обогащения васюкинцев</span
+            >
+          </div>
+
+          <div class="steps__grid">
+            <div class="steps__card steps__card--1">
+              <div class="steps__item steps__item--1">
+                <div class="steps__number golos-text-semibold">1</div>
+                <p class="steps__text golos-text-medium">
+                  Строительство железнодорожной магистрали Москва-Васюки
+                </p>
+                <div class="steps__overlay--desk overlay"></div>
+              </div>
+              <div class="steps__item steps__item--2">
+                <div class="steps__number golos-text-semibold">2</div>
+                <p class="steps__text golos-text-medium">
+                  Открытие фешенебельной гостиницы «Проходная пешка»
+                  и&nbsp;других небоскрёбов
+                </p>
+                <div class="steps__overlay--desk overlay"></div>
+              </div>
+              <div class="steps__overlay--mob overlay"></div>
+            </div>
+
+            <div class="steps__card steps__card--2">
+              <div class="steps__item steps__item--3">
+                <div class="steps__number golos-text-semibold">3</div>
+                <p class="steps__text golos-text-medium">
+                  Поднятие сельского хозяйства в&nbsp;радиусе на&nbsp;тысячу
+                  километров: производство овощей, фруктов, икры, шоколадных
+                  конфет
+                </p>
+                <div class="steps__overlay--desk overlay"></div>
+              </div>
+              <div class="steps__overlay--mob overlay"></div>
+            </div>
+
+            <div class="steps__card steps__card--3">
+              <div class="steps__item steps__item--4">
+                <div class="steps__number golos-text-semibold">4</div>
+                <p class="steps__text golos-text-medium">
+                  Строительство дворца для&nbsp;турнира
+                </p>
+                <div class="steps__overlay--desk overlay"></div>
+              </div>
+              <div class="steps__item steps__item--5">
+                <div class="steps__number golos-text-semibold">5</div>
+                <p class="steps__text golos-text-medium">
+                  Размещение гаражей для&nbsp;гостевого<br />автотранспорта
+                </p>
+                <div class="steps__overlay--desk overlay"></div>
+              </div>
+              <div class="steps__overlay--mob overlay"></div>
+            </div>
+
+            <div class="steps__card steps__card--4">
+              <div class="steps__item steps__item--6">
+                <div class="steps__number golos-text-semibold">6</div>
+                <p class="steps__text golos-text-medium">
+                  Постройка сверхмощной радиостанции для&nbsp;передачи всему
+                  миру сенсационных результатов
+                </p>
+                <div class="steps__overlay--desk overlay"></div>
+              </div>
+              <div class="steps__overlay--mob overlay"></div>
+            </div>
+
+            <div class="steps__card steps__card--5">
+              <div class="steps__item steps__item--7">
+                <div class="steps__number golos-text-semibold">7</div>
+                <p class="steps__text golos-text-medium">
+                  Создание аэропорта «Большие Васюки» с&nbsp;регулярным
+                  отправлением почтовых самолётов и&nbsp;дирижаблей
+                  во&nbsp;все&nbsp;концы света, включая Лос-Анжелос
+                  и&nbsp;Мельбурн
+                </p>
+                <div class="steps__overlay--desk overlay"></div>
+              </div>
+              <div class="steps__overlay--mob overlay"></div>
+            </div>
+          </div>
+
+          <div class="steps__image">
+            <img src="./images/plane.png" alt="Самолет" />
+          </div>
+
+          <div class="steps__controls">
+            <button
+              class="steps__arrow arrow steps__arrow--left"
+              aria-label="Предыдущий этап"
+              disabled
+            >
+              <img src="./images/arr-left.svg" alt="Предыдущий этап" />
+            </button>
+
+            <div class="steps__breadcrumbs">
+              <span class="steps__breadcrumb steps__breadcrumb--active"></span>
+              <span class="steps__breadcrumb"></span>
+              <span class="steps__breadcrumb"></span>
+              <span class="steps__breadcrumb"></span>
+              <span class="steps__breadcrumb"></span>
+            </div>
+
+            <button
+              class="steps__arrow arrow steps__arrow--right"
+              aria-label="Следующий этап"
+            >
+              <img src="./images/arr-right.svg" alt="Следующий этап" />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4 экран (участники турнира)-->
+      <section class="participants">
+        <div id="participants" class="participants__container container">
+          <div class="particiapants__header">
+            <h2 class="participants__title merriweather-regular">
+              Участники турнира
+            </h2>
+            <div class="participants__controls">
+              <button
+                class="particiapants__arrow arrow participants__arrow--left"
+                aria-label="Предыдущий участник"
+              >
+                <img src="./images/arr-left.svg" alt="Предыдущий участник" />
+              </button>
+              <div class="participants__counter golos-text-regular">
+                3<span> / 6</span>
+              </div>
+              <button
+                class="particiapants__arrow arrow participants__arrow--right"
+                aria-label="Следующий участник"
+              >
+                <img src="./images/arr-right.svg" alt="Следующий участник" />
+              </button>
+            </div>
+          </div>
+          <div class="participants__carousel-container">
+            <div class="participants__carousel"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Тикер -->
+      <div class="ticker">
+        <div class="ticker__wrapper merriweather-regular">
+          <div class="ticker__item">
+            Дело помощи утопающим — дело рук самих утопающих!
+          </div>
+          <div class="ticker__item">&#8226;</div>
+          <div class="ticker__item">
+            Шахматы двигают вперед не только культуру, но и экономику!
+          </div>
+          <div class="ticker__item">&#8226;</div>
+          <div class="ticker__item">
+            Лед тронулся, господа присяжные заседатели!
+          </div>
+          <div class="ticker__item">&#8226;</div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Футер -->
+    <footer class="footer">
+      <div class="footer__container container">
+        <p class="footer__text golos-text-regular">
+          Все&nbsp;персонажи, события и&nbsp;цитаты являются вымышленными
+          и&nbsp;не&nbsp;принадлежат создателям сайта. С&nbsp;подробностями
+          можно познакомиться в&nbsp;главе XXXIV романа Ильи Ильфа
+          и&nbsp;Евгения Петрова «Двенадцать стульев».
+        </p>
+      </div>
+    </footer>
+
+    <!-- Шаблон карточки участника -->
+    <template id="card-template">
+      <div class="participant__card">
+        <div class="participant__image">
+          <img src="./images/participant.png" alt="" loading="lazy" />
+        </div>
+        <h3 class="participant__name golos-text-semibold"></h3>
+        <p class="participant__title golos-text-regular">
+          Чемпион мира по шахматам
+        </p>
+        <button class="participant__button golos-text-medium">Подробнее</button>
+      </div>
+    </template>
+
+    <script type="module" src="./scripts/index.js"></script>
+  </body>
+</html>
