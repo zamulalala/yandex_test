@@ -117,6 +117,7 @@ export function initParticipantsSlider(participants) {
 
   // Обработка свайпа для сенсорных устройств
   function handleTouchStart(event) {
+    stopAutoSlide();
     touchStartX = event.touches[0].clientX;
     touchCurrentX = touchStartX;
     carousel.style.transition = "none"; // Отключаем анимацию на время перемещения пальцем
@@ -142,6 +143,7 @@ export function initParticipantsSlider(participants) {
       updateCarouselPosition(0);
     }
     touchDifference = 0; // Сбрасываем разницу
+    startAutoSlide();
   }
 
   leftArrow.addEventListener("click", () => {
