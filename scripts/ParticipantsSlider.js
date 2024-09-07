@@ -16,8 +16,12 @@ export function initParticipantsSlider(participants) {
   let cardWidth;
 
   let touchStartX = 0;
+  let touchStartY = 0;
   let touchCurrentX = 0;
-  let touchDifference = 0;
+  let touchCurrentY = 0;
+  let touchDifferenceX = 0;
+  let touchDifferenceY = 0;
+  let isHorizontalSwipe = false; // Флаг для определения направления свайпа
 
   // Определение параметров для мобильной и десктопной версий
   function setSliderParams() {
@@ -117,33 +121,52 @@ export function initParticipantsSlider(participants) {
 
   // Обработка свайпа для сенсорных устройств
   function handleTouchStart(event) {
-    stopAutoSlide();
+    stopAutoSlide(); // Останавливаем автопрокрутку
     touchStartX = event.touches[0].clientX;
+    touchStartY = event.touches[0].clientY;
     touchCurrentX = touchStartX;
+    touchCurrentY = touchStartY;
     carousel.style.transition = "none"; // Отключаем анимацию на время перемещения пальцем
+    isHorizontalSwipe = false; // Сбрасываем флаг свайпа
   }
 
   function handleTouchMove(event) {
     touchCurrentX = event.touches[0].clientX;
-    touchDifference = touchCurrentX - touchStartX;
-    updateCarouselPosition(touchDifference); // Двигаем карусель вместе с пальцем
+    touchCurrentY = event.touches[0].clientY;
+
+    touchDifferenceX = touchCurrentX - touchStartX;
+    touchDifferenceY = touchCurrentY - touchStartY;
+
+    // Проверяем, что движение больше по горизонтали, чем по вертикали
+    if (!isHorizontalSwipe) {
+      isHorizontalSwipe = Math.abs(touchDifferenceX) > Math.abs(touchDifferenceY);
+    }
+
+    // Если свайп горизонтальный, предотвращаем вертикальную прокрутку
+    if (isHorizontalSwipe) {
+      event.preventDefault(); // Блокируем вертикальную прокрутку страницы
+      updateCarouselPosition(touchDifferenceX); // Двигаем карусель вместе с пальцем
+    }
   }
 
   function handleTouchEnd() {
-    if (Math.abs(touchDifference) > 50) {
-      if (touchDifference < 0) {
-        // Свайп влево
-        nextCardGenerate();
+    if (isHorizontalSwipe) {
+      if (Math.abs(touchDifferenceX) > 50) {
+        if (touchDifferenceX < 0) {
+          // Свайп влево
+          nextCardGenerate();
+        } else {
+          // Свайп вправо
+          prevCardGenerate();
+        }
       } else {
-        // Свайп вправо
-        prevCardGenerate();
+        // Возвращаем карусель в исходное положение, если свайп был слишком коротким
+        updateCarouselPosition(0);
       }
-    } else {
-      // Возвращаем карусель в исходное положение, если свайп был слишком коротким
-      updateCarouselPosition(0);
     }
-    touchDifference = 0; // Сбрасываем разницу
-    startAutoSlide();
+    touchDifferenceX = 0; // Сбрасываем разницу
+    touchDifferenceY = 0; // Сбрасываем разницу
+    startAutoSlide(); // Возобновляем автопрокрутку после завершения свайпа
   }
 
   leftArrow.addEventListener("click", () => {
