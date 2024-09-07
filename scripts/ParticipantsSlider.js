@@ -15,6 +15,10 @@ export function initParticipantsSlider(participants) {
   let cardsToShow;
   let cardWidth;
 
+  let touchStartX = 0;
+  let touchCurrentX = 0;
+  let touchDifference = 0;
+
   // Определение параметров для мобильной и десктопной версий
   function setSliderParams() {
     if (window.innerWidth <= 768) {
@@ -27,8 +31,8 @@ export function initParticipantsSlider(participants) {
   }
 
   // Функция для получения ширины карточки и установки начальной позиции
-  function updateCarouselPosition() {
-    const offset = -cardWidth; // Центрируем текущую карточку
+  function updateCarouselPosition(offsetX = 0) {
+    const offset = -cardWidth + offsetX; // Центрируем текущую карточку
     carousel.style.transform = `translateX(${offset}px)`;
   }
 
@@ -111,6 +115,35 @@ export function initParticipantsSlider(participants) {
     clearInterval(autoSlideInterval);
   }
 
+  // Обработка свайпа для сенсорных устройств
+  function handleTouchStart(event) {
+    touchStartX = event.touches[0].clientX;
+    touchCurrentX = touchStartX;
+    carousel.style.transition = "none"; // Отключаем анимацию на время перемещения пальцем
+  }
+
+  function handleTouchMove(event) {
+    touchCurrentX = event.touches[0].clientX;
+    touchDifference = touchCurrentX - touchStartX;
+    updateCarouselPosition(touchDifference); // Двигаем карусель вместе с пальцем
+  }
+
+  function handleTouchEnd() {
+    if (Math.abs(touchDifference) > 50) {
+      if (touchDifference < 0) {
+        // Свайп влево
+        nextCardGenerate();
+      } else {
+        // Свайп вправо
+        prevCardGenerate();
+      }
+    } else {
+      // Возвращаем карусель в исходное положение, если свайп был слишком коротким
+      updateCarouselPosition(0);
+    }
+    touchDifference = 0; // Сбрасываем разницу
+  }
+
   leftArrow.addEventListener("click", () => {
     stopAutoSlide();
     prevCardGenerate();
@@ -122,6 +155,11 @@ export function initParticipantsSlider(participants) {
     nextCardGenerate();
     startAutoSlide();
   });
+
+  // Добавление сенсорных событий для мобильных устройств
+  carouselContainer.addEventListener("touchstart", handleTouchStart);
+  carouselContainer.addEventListener("touchmove", handleTouchMove);
+  carouselContainer.addEventListener("touchend", handleTouchEnd);
 
   carouselContainer.addEventListener("mouseenter", stopAutoSlide);
   carouselContainer.addEventListener("mouseleave", startAutoSlide);
