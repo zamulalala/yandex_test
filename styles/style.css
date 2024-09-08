@@ -1218,7 +1218,7 @@
     background-color: var(--color-accent-blue);
     color: var(--color-white);
   }
-  .carousel__arrow:active
+  .carousel__arrow:active,
   .carousel__arrow:focus-visible {
     background-color: #f8c654;
   }
