@@ -17,9 +17,13 @@ export function initStepsSlider() {
     stepsGrid.style.transform = `translateX(-${currentIndex * 100}%)`;
     updateArrows();
     updateBreadcrumbs();
-    stepsGrid.addEventListener("transitionend", () => {
-      isAnimating = false;
-    }, { once: true });
+    stepsGrid.addEventListener(
+      "transitionend",
+      () => {
+        isAnimating = false;
+      },
+      { once: true }
+    );
   }
 
   function updateArrows() {
@@ -63,22 +67,33 @@ export function initStepsSlider() {
     touchCurrentX = event.touches[0].clientX;
     touchDifferenceX = touchCurrentX - touchStartX;
 
+    // Не даем сдвинуть дальше первой или последней карточки
+    if (
+      (currentIndex === 0 && touchDifferenceX > 0) || // Первая карточка, свайп вправо
+      (currentIndex === stepsCards.length - 1 && touchDifferenceX < 0) // Последняя карточка, свайп влево
+    ) {
+      touchDifferenceX = 0;
+    }
+
     // Смещаем слайдер в зависимости от движения пальца
     stepsGrid.style.transform = `translateX(calc(-${currentIndex * 100}% + ${touchDifferenceX}px))`;
   }
 
   function handleTouchEnd() {
     if (isAnimating) return;
-    
+
     // Если движение больше 50px, определяем направление свайпа
     if (Math.abs(touchDifferenceX) > 50) {
-      if (touchDifferenceX < 0) {
+      if (touchDifferenceX < 0 && currentIndex < stepsCards.length - 1) {
         goToNext(); // Свайп влево
-      } else {
+      } else if (touchDifferenceX > 0 && currentIndex > 0) {
         goToPrev(); // Свайп вправо
+      } else {
+        // Возвращаем в исходное положение, если попытались сдвинуть за край
+        updateSlider();
       }
     } else {
-      // Возвращаем в исходное положение, если движение было недостаточно
+      // Возвращаем в исходное положение, если движение было недостаточным
       updateSlider();
     }
 
@@ -86,48 +101,23 @@ export function initStepsSlider() {
   }
 
   // Добавляем обработчики событий для сенсорного управления
-  function addTouchEvents() {
-    stepsGrid.addEventListener("touchstart", handleTouchStart);
-    stepsGrid.addEventListener("touchmove", handleTouchMove);
-    stepsGrid.addEventListener("touchend", handleTouchEnd);
-  }
+  stepsGrid.addEventListener("touchstart", handleTouchStart);
+  stepsGrid.addEventListener("touchmove", handleTouchMove);
+  stepsGrid.addEventListener("touchend", handleTouchEnd);
 
-  // Убираем обработчики событий для сенсорного управления
-  function removeTouchEvents() {
-    stepsGrid.removeEventListener("touchstart", handleTouchStart);
-    stepsGrid.removeEventListener("touchmove", handleTouchMove);
-    stepsGrid.removeEventListener("touchend", handleTouchEnd);
-  }
+  // Обработчики кликов для стрелок
+  leftArrow.addEventListener("click", goToPrev);
+  rightArrow.addEventListener("click", goToNext);
 
-  // Функция для включения или отключения слайдера в зависимости от ширины экрана
-  function checkScreenWidth() {
-    if (window.innerWidth <= 768) {
-      // Мобильная версия, активируем слайдер
-      leftArrow.addEventListener("click", goToPrev);
-      rightArrow.addEventListener("click", goToNext);
-      breadcrumbs.forEach((breadcrumb, index) => {
-        breadcrumb.addEventListener("click", () => {
-          if (isAnimating) return;
-          currentIndex = index;
-          updateSlider();
-        });
-      });
+  // Обработчики кликов для хлебных крошек
+  breadcrumbs.forEach((breadcrumb, index) => {
+    breadcrumb.addEventListener("click", () => {
+      if (isAnimating) return;
+      currentIndex = index;
       updateSlider();
-      addTouchEvents(); // Включаем сенсорные события
-    } else {
-      // Десктопная версия, сбрасываем слайдер
-      currentIndex = 0;
-      stepsGrid.style.transition = "none";
-      stepsGrid.style.transform = "none"; // Возвращаем в исходное положение
-      removeTouchEvents(); // Убираем сенсорные события
-      leftArrow.removeEventListener("click", goToPrev);
-      rightArrow.removeEventListener("click", goToNext);
-    }
-  }
+    });
+  });
 
-  // Проверяем ширину экрана при загрузке страницы
-  checkScreenWidth();
-
-  // Добавляем обработчик события изменения размера экрана
-  window.addEventListener("resize", checkScreenWidth);
+  // Инициализация слайдера
+  updateSlider();
 }
