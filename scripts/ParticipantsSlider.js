@@ -121,6 +121,7 @@ export function initParticipantsSlider(participants) {
 
   // Обработка свайпа для сенсорных устройств
   function handleTouchStart(event) {
+    if (isAnimating) return; // Если анимация еще идет, свайп игнорируется
     stopAutoSlide(); // Останавливаем автопрокрутку
     touchStartX = event.touches[0].clientX;
     touchStartY = event.touches[0].clientY;
@@ -131,6 +132,7 @@ export function initParticipantsSlider(participants) {
   }
 
   function handleTouchMove(event) {
+    if (isAnimating) return; // Игнорируем движение, если анимация продолжается
     touchCurrentX = event.touches[0].clientX;
     touchCurrentY = event.touches[0].clientY;
 
@@ -150,6 +152,7 @@ export function initParticipantsSlider(participants) {
   }
 
   function handleTouchEnd() {
+    if (isAnimating) return; // Игнорируем завершение, если анимация продолжается
     if (isHorizontalSwipe) {
       if (Math.abs(touchDifferenceX) > 50) {
         if (touchDifferenceX < 0) {
